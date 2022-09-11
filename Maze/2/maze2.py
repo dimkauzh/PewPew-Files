@@ -53,7 +53,6 @@ while True:
             clear()
     # Level 2
     if level == level2:
-        pixel(self, 6, 3, 0)
         # Previous level
         if x == 6 and y == -1:
             level = level1
