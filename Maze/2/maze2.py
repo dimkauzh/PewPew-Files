@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 import pew
 
 pew.init()
@@ -34,6 +35,28 @@ level3 = pew.Pix.from_iter((
     [1, 1, 1, 1, 1, 2, 0, 2],
 ))
 
+level4 = pew.Pix.from_iter((
+    [1, 1, 1, 1, 1, 2, 0, 2],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 2, 0, 2],
+))
+
+level5 = pew.Pix.from_iter((
+    [1, 1, 1, 1, 1, 2, 0, 2],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 2, 0, 2],
+))
+
 x = 6
 y = 0
 stand_x = 6
@@ -58,7 +81,7 @@ while True:
             level.pixel(6, 3, 0)
             x = stand_x
             y = stand_y
-        #Next Level
+        # Next Level
         if x == 1 and y == 4:
             level = level3
             clear(1, 4, 0)
@@ -70,17 +93,28 @@ while True:
             clear(6, -1, 0)
     # Level 3       
     if level == level3:
-        #Teleport
+        # Teleport
         if x == 4 and y == 6:
             x = 6
             y = 3
             clear(4, 6, 0)
-        #Previous level
+        # Next level
+        if x == 6 and y == 8:
+            level = level4
+            x = 6
+            y = 0
+            clear(1, 4, 0)
+        # Previous level
         if x == 6 and y == -1:
             level = level2
             x = 6
             y = 0
             clear(6, -1, 0)
+    if level == level4:
+        # Next level
+        if x == 1 and y == 4:
+            level = level5
+            clear(1, 4, 0)
         
 
     level.pixel(x, y, 0)
